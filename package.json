@@ -1,0 +1,70 @@
+{
+  "name": "dsh-recovery-center",
+  "version": "0.1.2",
+  "description": "Local, offline plugin recovery points for DeepSeek Harness, with an independent rescue UI.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek",
+    "harness",
+    "backup",
+    "rollback",
+    "recovery"
+  ],
+  "exports": {
+    ".": "./src/host.js",
+    "./client": "./src/client.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "dsh-recovery": "./src/cli.js"
+  },
+  "files": [
+    "src",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "README.zh-CN.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node --check src/host.js && node --check src/client.js && node --check src/worker.js && node --test test/*.test.js"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/dsh-client-ui-slots": "0.1.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-settings": "0.1.2-rc.1",
+    "@deepseek-ai/dsh-client-connection": "0.1.2-rc.1",
+    "@deepseek-ai/dsh-host-webserver": "0.1.2-rc.1",
+    "@deepseek-ai/dsh-client-locale": "0.1.2-rc.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-locale"
+      ],
+      "platform": "web"
+    }
+  },
+  "author": "supery0ung",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supery0ung/dsh-recovery-center.git"
+  },
+  "homepage": "https://github.com/supery0ung/dsh-recovery-center#readme",
+  "bugs": {
+    "url": "https://github.com/supery0ung/dsh-recovery-center/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
