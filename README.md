@@ -1,10 +1,40 @@
+
 # DSH Recovery Center / DSH 恢复中心
 
-DSH updates move fast and plugins break things. Save a restore point before you tinker, roll back offline when it blows up — even when the DSH frontend will not load, the rescue page still opens.
+DSH updates move fast and plugins break things. Save a recovery point while DSH is healthy, then roll back offline after a crash — even when the DSH frontend will not load, the independent rescue page still opens.
+
+DSH 更新快，插件偶尔会让整个界面无法加载。DSH Recovery Center 会在系统正常时保存插件和加载配置；发生崩溃后，可以离线恢复到之前的正常状态。即使 DSH 网页已经打不开，独立应急页面仍然可以启动。
 
 **Preview:** tested with DSH **0.1.2-rc.1**, Node 22, macOS. Linux is implemented but not yet verified. Windows and supervised/Desktop restarts are not supported in this first release. Save a point before changing plugins. This is not a full DSH or workspace backup.
 
-[中文使用说明](README.zh-CN.md)
+## 中文说明
+
+### 它解决什么问题
+
+DSH 经常更新，社区插件也很多。一次不兼容的主题、前端插件或依赖更新，可能让 DSH 白屏、无法进入设置，甚至连出问题的插件都删不掉。恢复中心专门处理这种情况：正常时保存一份插件状态，崩溃后恢复；主界面打不开时，改用独立应急入口。
+
+### 主要功能
+
+- 保存当前插件文件、依赖清单和加载配置，恢复时不依赖网络重新下载。
+- 恢复前校验完整性和 DSH 版本，损坏或不匹配的恢复点不会直接覆盖现有文件。
+- 每次恢复前自动保存当前状态，避免一次恢复操作造成新的问题。
+- macOS 首次启用后自动生成桌面应急入口；入口丢失后可以重新创建。
+- 恢复程序位于插件目录之外，即使 DSH 前端或插件本身已经损坏，仍可打开。
+- 不恢复聊天、工作区、DSH 主程序或单独存储的模型凭据。
+
+### 安装
+
+```sh
+dsh plugin --profile web add dsh-recovery-center@0.1.2 --config.auto-install-peers=false
+```
+
+重启 DSH，进入 **设置 → 恢复中心**，在系统正常时先保存第一个恢复点。以后安装或更新插件前再保存一次。若 DSH 页面无法打开，双击桌面的 `DSH Emergency Recovery-安装标识.command`，从独立页面选择正常的恢复点。
+
+界面和独立应急页均支持中文与英文。完整中文细节见 [README.zh-CN.md](README.zh-CN.md)。
+
+---
+
+## English documentation
 
 ## Languages
 
