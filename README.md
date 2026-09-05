@@ -1,6 +1,6 @@
 # DSH Recovery Center / DSH 恢复中心
 
-Local plugin recovery points for DeepSeek Harness, with a rescue interface that works even when the DSH frontend is broken.
+DSH updates move fast and plugins break things. Save a restore point before you tinker, roll back offline when it blows up — even when the DSH frontend will not load, the rescue page still opens.
 
 **Preview:** tested with DSH **0.1.2-rc.1**, Node 22, macOS. Linux is implemented but not yet verified. Windows and supervised/Desktop restarts are not supported in this first release. Save a point before changing plugins. This is not a full DSH or workspace backup.
 
